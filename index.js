@@ -32,8 +32,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/submit', zip.single('zip'), (req, res) => {
-  console.log(req.body.key);
-  console.log(process.env.COVERAGE_ARTIFACT_KEY || '');
   if (req.body.key !== (process.env.COVERAGE_ARTIFACT_KEY || '')) {
     res.status(403);
     res.json({error: 'Not authorized to upload coverage file'});
