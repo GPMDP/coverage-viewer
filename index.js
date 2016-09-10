@@ -38,7 +38,7 @@ app.post('/submit', zip.single('zip'), (req, res) => {
     return;
   }
   const file = req.file;
-  const branch = req.body.branch || 'Unknown Branch';
+  const branch = (req.body.branch || 'Unknown Branch').replace(/\//g, '-');
   // fs.rename(path.resolve(file.path), path.resolve(`${__dirname}/coverage/${branch}.zip`));
   const branchDir = path.resolve(__dirname, 'coverage', branch);
   rimraf(branchDir, (err) => {
